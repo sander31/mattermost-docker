@@ -23,10 +23,10 @@ services:
     build:
       context: app
       # uncomment following lines for team edition or change UID/GID
-      # args:
-      #   - edition=team
-      #   - PUID=1000
-      #   - PGID=1000
+      args:
+         - edition=team
+         - PUID=1000
+         - PGID=1000
     restart: unless-stopped
     volumes:
       - ./volumes/app/mattermost/config:/mattermost/config:rw
@@ -44,9 +44,9 @@ services:
   web:
     build: web
     ports:
-      - "80:80"
-      - "443:443"
-    read_only: true
+      - "127.0.0.1:8065:8000"
+     
+    read_only: false
     restart: unless-stopped
     volumes:
       # This directory must have cert files if you want to enable SSL
