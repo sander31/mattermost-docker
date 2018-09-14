@@ -25,8 +25,8 @@ services:
       # uncomment following lines for team edition or change UID/GID
       args:
          - edition=team
-         - PUID=1000
-         - PGID=1000
+         #- PUID=8001
+         #- PGID=8001
     restart: unless-stopped
     volumes:
       - ./volumes/app/mattermost/config:/mattermost/config:rw
