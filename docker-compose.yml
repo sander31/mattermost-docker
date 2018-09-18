@@ -25,13 +25,14 @@ services:
       # uncomment following lines for team edition or change UID/GID
       args:
          - edition=team
-         #- PUID=8001
-         #- PGID=8001
+         - PUID=8001
+         - PGID=8001
     restart: unless-stopped
     volumes:
       - ./volumes/app/mattermost/config:/mattermost/config:rw
       - ./volumes/app/mattermost/data:/mattermost/data:rw
       - ./volumes/app/mattermost/logs:/mattermost/logs:rw
+      - ./volumes/app/mattermost/plugins:/mattermost/plugins:rw
       - /etc/localtime:/etc/localtime:ro
     environment:
       # set same as db credentials and dbname
@@ -44,9 +45,9 @@ services:
   web:
     build: web
     ports:
-      - "127.0.0.1:8065:8000"
-     
-    read_only: false
+      - "8000:80"
+      - "443:443"
+    read_only: true
     restart: unless-stopped
     volumes:
       # This directory must have cert files if you want to enable SSL
